@@ -6,6 +6,6 @@ Vue.use(Vuetify)
 
 export default new Vuetify(
     {
-        iconfont: 'md'
+        iconfont: 'mdi'
     }
 )
