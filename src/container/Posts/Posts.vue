@@ -7,9 +7,9 @@
       >
         <template v-slot:activator="{ on }">
           <v-btn
-            color="red lighten-2"
-            dark
-            v-on="on"
+              color="red lighten-2"
+              dark
+              v-on="on"
           >
             Show posts
           </v-btn>
@@ -21,7 +21,7 @@
 </template>
 
 <script>
-import InfiniteScroll from '@/components/InfiniteScroll/InfiniteScroll'
+import InfiniteScroll from '@/components/InfiniteScroll/InfiniteScroll';
 
 export default {
   name: 'Posts',
@@ -31,7 +31,7 @@ export default {
   data() {
     return {
       dialog: false
-    }
+    };
   }
-}
+};
 </script>

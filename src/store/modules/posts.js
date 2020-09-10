@@ -1,35 +1,35 @@
-import {api} from "@/apis/config";
+import {api} from '@/apis/config';
 
-const endPoint = 'posts'
+const endPoint = 'posts';
 
 const state = {
-    posts: []
-}
+  posts: []
+};
 
-const getters = {}
+const getters = {};
 
 const mutations = {
-    SET_POSTS(state, data) {
-        state.posts = data
-    }
-}
+  SET_POSTS(state, data) {
+    state.posts = data;
+  }
+};
 
 const actions = {
-    async loadPosts({commit}) {
-        await api.get(endPoint)
-            .then(res => {
-                commit('SET_POSTS', res.data)
-                return res;
-            })
-            .catch(error => console.log(error))
-    }
-}
+  async loadPosts({commit}) {
+    await api.get(endPoint)
+    .then(res => {
+      commit('SET_POSTS', res.data);
+      return res;
+    })
+    .catch(error => console.log(error));
+  }
+};
 
 export default {
-    namespaced: true,
-    state,
-    getters,
-    actions,
-    mutations
+  namespaced: true,
+  state,
+  getters,
+  actions,
+  mutations
 };
 

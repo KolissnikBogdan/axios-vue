@@ -22,39 +22,39 @@
           </template>
           <v-date-picker v-model="date" no-title @input="menu = false"></v-date-picker>
         </v-menu>
-        <p>Formatted date with Moment.js: <strong>{{ date | moment("dddd, MMMM Do YYYY, h:mm:ss a")}}</strong></p>
+        <p>Formatted date with Moment.js: <strong>{{ date | moment('dddd, MMMM Do YYYY, h:mm:ss a') }}</strong></p>
       </v-col>
     </v-row>
   </v-container>
 </template>
 
 <script>
-import moment from 'moment'
+import moment from 'moment';
 
 export default {
-  name: "Dashboard",
+  name: 'Dashboard',
   data() {
     return {
       date: new Date().toISOString().substr(0, 10),
       dateFormatted: this.formatDate(new Date().toISOString().substr(0, 10)),
       menu: false
-    }
+    };
   },
 
   watch: {
-    date () {
-      this.dateFormatted = this.formatDate(this.date)
+    date() {
+      this.dateFormatted = this.formatDate(this.date);
     },
   },
 
   methods: {
-    formatDate (date) {
-      if (!date) return null
+    formatDate(date) {
+      if (!date) return null;
 
-      return moment(date).format('YYYY-MM-DD [at] hh:mm')
+      return moment(date).format('YYYY-MM-DD [at] hh:mm');
     }
   },
-}
+};
 </script>
 
 <style scoped>

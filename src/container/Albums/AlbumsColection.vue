@@ -10,20 +10,24 @@
 </template>
 
 <script>
-import { api } from "@/apis/config";
+import {api} from '@/apis/config';
 
 export default {
-  name: "GridAlbums",
-  props: ['album'],
+  name: 'GridAlbums',
+  props: {
+    album: {
+      type: Object
+    }
+  },
   data() {
     return {
       loading: true,
       errored: false,
       photo: null
-    }
+    };
   },
   mounted() {
-    this.loadMore(this.album.id)
+    this.loadMore(this.album.id);
   },
   methods: {
     async loadMore(id) {
@@ -32,7 +36,7 @@ export default {
       });
     }
   }
-}
+};
 </script>
 
 <style scoped>

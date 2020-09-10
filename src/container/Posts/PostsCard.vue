@@ -7,10 +7,10 @@
         >
           <v-card-text>
             <p class="text-h6 text--primary">
-              {{post.title}}
+              {{ post.title }}
             </p>
             <div class="text--primary">
-              {{post.body}}
+              {{ post.body }}
             </div>
           </v-card-text>
         </v-card>
@@ -21,9 +21,13 @@
 
 <script>
 export default {
-  name: "PostCard",
-  props: ['post']
-}
+  name: 'PostCard',
+  props: {
+    post: {
+      type: Object
+    }
+  }
+};
 </script>
 
 <style scoped>

@@ -38,7 +38,11 @@
 
 export default {
   name: "Navigation",
-  props: ['drawer'],
+  props: {
+    drawer: {
+      type: Boolean
+    }
+  },
   data() {
     return {
       isSelectedChild: this.drawer
