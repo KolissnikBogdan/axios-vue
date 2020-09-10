@@ -1,4 +1,4 @@
-# simpleapp
+# Vue project with axios lib
 
 ## Project setup
 ```
