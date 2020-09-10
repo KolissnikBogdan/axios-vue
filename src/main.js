@@ -6,6 +6,11 @@ import index from './store'
 
 Vue.config.productionTip = false
 
+let infiniteScroll =  require('vue-infinite-scroll');
+Vue.use(infiniteScroll)
+
+Vue.use(require('vue-moment'))
+
 new Vue({
     vuetify,
     router,

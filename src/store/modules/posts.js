@@ -15,10 +15,11 @@ const mutations = {
 }
 
 const actions = {
-    loadPosts({commit}) {
-        api.get(endPoint)
+    async loadPosts({commit}) {
+        await api.get(endPoint)
             .then(res => {
                 commit('SET_POSTS', res.data)
+                return res;
             })
             .catch(error => console.log(error))
     }

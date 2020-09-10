@@ -10,8 +10,7 @@
 </template>
 
 <script>
-// import {mapActions} from "vuex";
-import {api} from "@/apis/config";
+import { api } from "@/apis/config";
 
 export default {
   name: "GridAlbums",
@@ -25,22 +24,13 @@ export default {
   },
   mounted() {
     this.loadMore(this.album.id)
-    // try {
-    //   this.photo = this.loadPhoto(this.album.id)
-    // } catch (error) {
-    //   console.log(error);
-    //   this.errored = true;
-    // } finally {
-    //   this.loading = false
-    // }
   },
   methods: {
-    loadMore(id) {
-      api.get(`photos?albumId=${id}`).then(response => {
+    async loadMore(id) {
+      await api.get(`photos?albumId=${id}`).then(response => {
         this.photo = response.data[0].thumbnailUrl;
       });
     }
-    // ...mapActions("photos", ["loadPhoto"])
   }
 }
 </script>

@@ -23,12 +23,12 @@ const actions = {
             })
             .catch(error => console.log(error))
     },
-    loadPhoto(id) {
-        let res = api.get(`photos?albumId=${id}`);
+    async loadPhoto(id) {
+        let res = await api.get(`photos?albumId=${id}`);
         return res.data
     },
-    loadMore(id) {
-        api.get(`photos?albumId=${id}`).then(response => {
+    async loadMore(id) {
+        await api.get(`photos?albumId=${id}`).then(response => {
             return response.data[0].thumbnailUrl;
         });
     }

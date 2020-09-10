@@ -5,10 +5,12 @@
 
   <section v-else>
     <div v-if="loading">
-      <v-progress-circular
-          indeterminate
-          color="primary"
-      ></v-progress-circular>
+      <v-layout justify-center>
+        <v-progress-circular
+            indeterminate
+            color="primary"
+        ></v-progress-circular>
+      </v-layout>
     </div>
 
     <v-container class="my-5">
@@ -23,8 +25,8 @@
 </template>
 
 <script>
-import { mapState, mapActions } from "vuex";
-import GridAlbums from "@/container/Albums/GridAlbums/GridAlbums";
+import {mapState, mapActions} from "vuex";
+import GridAlbums from "@/container/Albums/AlbumsColection";
 
 export default {
   name: 'Albums',
