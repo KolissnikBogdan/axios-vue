@@ -31,13 +31,22 @@
           :length="paginationLength"
           :total-visible="7"
       ></v-pagination>
+      <v-fab-transition>
+        <v-btn
+            class="v-btn"
+            @click="scrollTop"
+        >
+          <v-icon>mdi-chevron-up</v-icon>
+        </v-btn>
+      </v-fab-transition>
     </v-container>
   </section>
+
 </template>
 
 <script>
 import {mapActions, mapGetters} from 'vuex';
-import Album from '@/container/Albums/AlbumsItem';
+import Album from '@/container/Albums/AlbumsColect';
 
 export default {
   name: 'Albums',
@@ -75,7 +84,20 @@ export default {
   },
 
   methods: {
-    ...mapActions(['loadAlbums'])
+    ...mapActions(['loadAlbums']),
+
+    scrollTop() {
+      window.scrollTo(0, 0)
+    }
   }
 };
 </script>
+
+<style scoped>
+.v-btn {
+  position: fixed;
+  bottom: 100px;
+  right: 0;
+  margin-right: 50px;
+}
+</style>
