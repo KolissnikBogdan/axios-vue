@@ -10,7 +10,7 @@
       <v-layout
           justify-space-between
           align-center>
-        <v-toolbar-title>Axios App</v-toolbar-title>
+        <v-toolbar-title @click="$router.push('/')">Axios App</v-toolbar-title>
         <v-switch v-model="switchTheme" :label="themeLabel" color="dark" class="mt-6"></v-switch>
       </v-layout>
     </v-app-bar>
@@ -56,12 +56,7 @@ export default {
 </script>
 
 <style>
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-#nav a.router-link-exact-active {
-  color: #42b983;
+.v-toolbar__title {
+  cursor: pointer !important;
 }
 </style>

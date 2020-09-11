@@ -33,6 +33,8 @@
       ></v-pagination>
       <v-fab-transition>
         <v-btn
+            fab
+            large
             class="v-btn"
             @click="scrollTop"
         >
