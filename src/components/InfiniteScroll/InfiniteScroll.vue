@@ -4,47 +4,47 @@
       infinite-scroll-disabled="busy"
       infinite-scroll-distance="limit"
   >
-    <PostCard
-        v-for="post in posts"
-        :key="post.id"
-        :post="post"
-    />
+    <PostCommentCard
+        v-for="comment in comments"
+        :key="comment.id"
+        :comment="comment"/>
   </div>
 </template>
 
 <script>
-import PostCard from '@/container/Posts/PostsCard';
+import PostCommentCard from '@/container/Posts/PostCommentCard';
 import {mapActions, mapGetters} from 'vuex';
 
 export default {
   name: 'InfiniteScroll',
+  props: ['post'],
   data() {
     return {
-      posts: [],
-      limit: 10,
+      comments: [],
+      limit: 4,
       busy: false
     };
   },
   computed: {
-    ...mapGetters(['postsList'])
+    ...mapGetters(['commentsList'])
   },
   components: {
-    PostCard
+    PostCommentCard
   },
   async created() {
-    await this.loadPosts();
+    await this.loadCommentsById(this.post.id);
   },
   methods: {
     async loadMore() {
-      await this.loadPosts();
+      await this.loadCommentsById(this.post.id);
       this.busy = true;
 
-      const append = this.postsList.slice(this.posts.length, this.posts.length + this.limit);
-      this.posts = [...this.posts, ...append];
+      const append = this.commentsList.slice(this.comments.length, this.comments.length + this.limit);
+      this.comments = [...this.comments, ...append];
 
       this.busy = false;
     },
-    ...mapActions(['loadPosts'])
+    ...mapActions(['loadCommentsById'])
   }
 };
 

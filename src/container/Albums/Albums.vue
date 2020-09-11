@@ -5,7 +5,7 @@
 
   <section v-else>
     <div v-if="loading">
-      <v-layout justify-center>
+      <v-layout class="justify-center py-2">
         <v-progress-circular
             indeterminate
             color="primary"
@@ -15,8 +15,12 @@
 
     <v-container class="my-5">
       <v-layout row wrap>
-        <v-flex xs12 sm6 md3 v-for="productItem in visiblePages"
-                :key="productItem.id">
+        <v-flex
+            xs12
+            sm6
+            md3
+            v-for="productItem in visiblePages"
+            :key="productItem.id">
           <Album :album="productItem"/>
         </v-flex>
       </v-layout>
@@ -45,9 +49,11 @@ export default {
       errored: false
     };
   },
+
   components: {
     Album
   },
+
   computed: {
     ...mapGetters(['albumsList']),
     visiblePages() {
@@ -57,15 +63,17 @@ export default {
       return Math.ceil(this.albumsList && this.albumsList.length / this.perPage);
     }
   },
+
   async created() {
     this.loading = true;
     await this.loadAlbums()
     .catch(errors => {
-      console.log(errors)
+      console.log(errors);
       this.errored = true;
     })
     .finally(this.loading = false);
   },
+
   methods: {
     ...mapActions(['loadAlbums'])
   }

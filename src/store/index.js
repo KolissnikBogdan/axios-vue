@@ -1,7 +1,8 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
-import posts from './modules/posts';
-import albums from './modules/albums';
+import posts from '@/store/modules/posts';
+import comments from '@/store/modules/comments';
+import albums from '@/store/modules/albums';
 import photos from '@/store/modules/photos';
 
 Vue.use(Vuex);
@@ -16,6 +17,7 @@ export default new Vuex.Store({
   modules: {
     namespaced: true,
     posts,
+    comments,
     albums,
     photos
   }

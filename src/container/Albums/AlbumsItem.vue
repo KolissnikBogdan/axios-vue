@@ -1,13 +1,14 @@
 <template>
   <v-card
       flat
-      class="ma-3 text-xs-center">
+      class="ma-3 text-xs-center"
+  >
     <v-img :src="photo"></v-img>
     <v-card-title
         primary-title
         class="justify-center text-center">
       <div>
-        <h3 class="headline text--accent-5">{{ album.title }}</h3>
+        <h3 class="headline text--accent-5" >{{ album.title }}</h3>
       </div>
     </v-card-title>
   </v-card>
@@ -23,6 +24,7 @@ export default {
       type: Object
     }
   },
+
   data() {
     return {
       loading: true,
@@ -30,9 +32,11 @@ export default {
       photo: null
     };
   },
+
   created() {
     this.loadMore(this.album.id);
   },
+
   methods: {
     async loadMore(id) {
       await api.get(`photos?albumId=${id}`).then(response => {
@@ -44,5 +48,7 @@ export default {
 </script>
 
 <style scoped>
-
+h3 {
+  cursor: pointer;
+}
 </style>
