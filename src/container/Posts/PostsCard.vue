@@ -28,7 +28,7 @@
 </template>
 
 <script>
-import InfiniteScroll from '@/components/InfiniteScroll/InfiniteScroll';
+import InfiniteScroll from '@/container/InfiniteScroll/InfiniteScroll';
 
 export default {
   name: 'PostCard',

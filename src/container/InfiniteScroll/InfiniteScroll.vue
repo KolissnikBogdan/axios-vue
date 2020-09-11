@@ -4,10 +4,12 @@
       infinite-scroll-disabled="busy"
       infinite-scroll-distance="limit"
   >
-    <PostCommentCard
-        v-for="comment in comments"
-        :key="comment.id"
-        :comment="comment"/>
+    <div>
+      <PostCommentCard
+          v-for="comment in comments"
+          :key="comment.id"
+          :comment="comment"/>
+    </div>
   </div>
 </template>
 
@@ -37,6 +39,7 @@ export default {
   methods: {
     async loadMore() {
       await this.loadCommentsById(this.post.id);
+
       this.busy = true;
 
       const append = this.commentsList.slice(this.comments.length, this.comments.length + this.limit);
