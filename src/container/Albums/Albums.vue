@@ -15,43 +15,59 @@
 
     <v-container class="my-5">
       <v-layout row wrap>
-        <v-flex xs12 sm6 md4 v-for="productItem in albums"
+        <v-flex xs12 sm6 md3 v-for="productItem in visiblePages"
                 :key="productItem.id">
-          <GridAlbums :album="productItem"/>
+          <Album :album="productItem"/>
         </v-flex>
       </v-layout>
+      <v-pagination
+          v-model="page"
+          class="my-4"
+          circle
+          :length="paginationLength"
+          :total-visible="7"
+      ></v-pagination>
     </v-container>
   </section>
 </template>
 
 <script>
-import {mapState, mapActions} from "vuex";
-import GridAlbums from "@/container/Albums/AlbumsColection";
+import {mapActions, mapGetters} from 'vuex';
+import Album from '@/container/Albums/AlbumsItem';
 
 export default {
   name: 'Albums',
   data() {
     return {
+      page: 1,
+      perPage: 12,
       loading: true,
       errored: false
-    }
+    };
   },
   components: {
-    GridAlbums
+    Album
   },
   computed: {
-    ...mapState('albums', ['albums'])
+    ...mapGetters(['albumsList']),
+    visiblePages() {
+      return this.albumsList && this.albumsList.slice((this.page - 1) * this.perPage, this.page * this.perPage);
+    },
+    paginationLength() {
+      return Math.ceil(this.albumsList && this.albumsList.length / this.perPage);
+    }
   },
-  mounted() {
-    this.loadAlbums()
-        .catch(error => {
-          console.log(error);
-          this.errored = true;
-        })
-        .finally(() => (this.loading = false));
+  async created() {
+    this.loading = true;
+    await this.loadAlbums()
+    .catch(errors => {
+      console.log(errors)
+      this.errored = true;
+    })
+    .finally(this.loading = false);
   },
   methods: {
-    ...mapActions("albums", ["loadAlbums"])
+    ...mapActions(['loadAlbums'])
   }
-}
+};
 </script>

@@ -1,7 +1,11 @@
 <template>
-  <v-card flat class="ma-3 text-xs-center">
+  <v-card
+      flat
+      class="ma-3 text-xs-center">
     <v-img :src="photo"></v-img>
-    <v-card-title primary-title class="justify-center">
+    <v-card-title
+        primary-title
+        class="justify-center text-center">
       <div>
         <h3 class="headline text--accent-5">{{ album.title }}</h3>
       </div>
@@ -26,7 +30,7 @@ export default {
       photo: null
     };
   },
-  mounted() {
+  created() {
     this.loadMore(this.album.id);
   },
   methods: {

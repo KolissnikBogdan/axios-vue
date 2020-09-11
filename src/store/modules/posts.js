@@ -2,34 +2,25 @@ import {api} from '@/apis/config';
 
 const endPoint = 'posts';
 
-const state = {
-  posts: []
-};
-
-const getters = {};
-
-const mutations = {
-  SET_POSTS(state, data) {
-    state.posts = data;
-  }
-};
-
-const actions = {
-  async loadPosts({commit}) {
-    await api.get(endPoint)
-    .then(res => {
-      commit('SET_POSTS', res.data);
-      return res;
-    })
-    .catch(error => console.log(error));
-  }
-};
-
 export default {
-  namespaced: true,
-  state,
-  getters,
-  actions,
-  mutations
-};
+  state: {
+    posts: []
+  },
 
+  getters: {
+    postsList: state => state.posts
+  },
+
+  mutations: {
+    SET_POSTS(state, posts) {
+      state.posts = posts;
+    }
+  },
+
+  actions: {
+    async loadPosts({commit}) {
+      let response = await api.get(endPoint);
+      commit('SET_POSTS', response.data);
+    }
+  }
+};

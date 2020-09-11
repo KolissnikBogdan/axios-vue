@@ -7,10 +7,16 @@ import photos from '@/store/modules/photos';
 Vue.use(Vuex);
 
 export default new Vuex.Store({
+  state: {
+  },
+  mutations: {
+  },
+  actions: {
+  },
   modules: {
     namespaced: true,
-    posts: posts,
-    albums: albums,
-    photos: photos
+    posts,
+    albums,
+    photos
   }
 });

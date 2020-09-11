@@ -2,32 +2,26 @@ import {api} from '@/apis/config';
 
 const endPoint = 'albums';
 
-const state = {
-  albums: []
-};
-
-const getters = {};
-
-const mutations = {
-  SET_ALBUMS(state, data) {
-    state.albums = data;
-  }
-};
-
-const actions = {
-  async loadAlbums({commit}) {
-    await api.get(endPoint)
-    .then(res => {
-      commit('SET_ALBUMS', res.data);
-    })
-    .catch(error => console.log(error));
-  }
-};
-
 export default {
-  namespaced: true,
-  state,
-  getters,
-  actions,
-  mutations
+  state: {
+    albums: null
+  },
+
+  getters: {
+    albumsList: state => state.albums
+  },
+
+  mutations: {
+    SET_ALBUMS(state, albums) {
+      state.albums = albums;
+    }
+  },
+
+  actions: {
+    async loadAlbums({commit}) {
+      let response = await api.get(endPoint);
+      commit('SET_ALBUMS', response.data);
+    }
+  }
 };
+

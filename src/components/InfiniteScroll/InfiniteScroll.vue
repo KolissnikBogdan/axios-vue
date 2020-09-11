@@ -1,20 +1,20 @@
 <template>
   <div
-    v-infinite-scroll="loadMore"
-    infinite-scroll-disabled="busy"
-    infinite-scroll-distance="limit"
+      v-infinite-scroll="loadMore"
+      infinite-scroll-disabled="busy"
+      infinite-scroll-distance="limit"
   >
     <PostCard
-      v-for="post in posts"
-      :key="post.id"
-      :post="post"
+        v-for="post in posts"
+        :key="post.id"
+        :post="post"
     />
   </div>
 </template>
 
 <script>
 import PostCard from '@/container/Posts/PostsCard';
-import {api} from '@/apis/config';
+import {mapActions, mapGetters} from 'vuex';
 
 export default {
   name: 'InfiniteScroll',
@@ -25,25 +25,26 @@ export default {
       busy: false
     };
   },
+  computed: {
+    ...mapGetters(['postsList'])
+  },
   components: {
     PostCard
   },
-  created() {
-    this.loadMore();
+  async created() {
+    await this.loadPosts();
   },
   methods: {
-    loadMore() {
-      console.log('Adding 10 more data results');
+    async loadMore() {
+      await this.loadPosts();
       this.busy = true;
-      api.get('/posts').then(response => {
-        const append = response.data.slice(
-            this.posts.length,
-            this.posts.length + this.limit
-        );
-        this.posts = this.posts.concat(append);
-        this.busy = false;
-      });
-    }
+
+      const append = this.postsList.slice(this.posts.length, this.posts.length + this.limit);
+      this.posts = [...this.posts, ...append];
+
+      this.busy = false;
+    },
+    ...mapActions(['loadPosts'])
   }
 };
 
